@@ -1,0 +1,17 @@
+services:
+  redis:
+      image: redis:latest  # Use the latest official Redis image
+      container_name: redis_container  # Name of the container
+      ports:
+        - "6379:6379"  # Map port 6379 from the container to the host
+      volumes:
+        - redis_data:/data  # Named volume for data persistence
+      restart: unless-stopped  # Restart the container unless stopped manually
+  mongo1:
+      container_name: mongo1
+      image: mongo:latest
+      ports:
+        - "27017:27017"
+      restart: always
+volumes:
+  redis_data:
