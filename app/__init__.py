@@ -2,6 +2,9 @@ from flask import Flask
 from celery import Celery
 from mongoengine import connect
 
+from flask_admin import Admin
+from app.admin import register_mongoengine_models
+
 from app.swagger import configure_swagger
 
 celery = None
@@ -28,6 +31,11 @@ def create_app():
         # Import routes to register them
         from app.routes import register_blueprints
         register_blueprints(app)
+        
+    # Initialize Flask-Admin
+    admin = Admin(app, name="Admin Panel", template_mode="bootstrap4")    
+    # Register all MongoEngine models with Flask-Admin
+    register_mongoengine_models(admin)
 
     return app
 

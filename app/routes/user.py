@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flasgger.utils import swag_from
 from app.tasks import save_user_to_db
 
-user_bp = Blueprint('user', __name__)
+user_bp = Blueprint('users', __name__)
 
 @user_bp.route('/add', methods=['POST'])
 @swag_from({
